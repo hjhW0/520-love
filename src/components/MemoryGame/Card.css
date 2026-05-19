@@ -1,0 +1,70 @@
+.card {
+  aspect-ratio: 1;
+  perspective: 800px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card:active:not(.card--matched) {
+  transform: scale(0.95);
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.card--flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-front {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  box-shadow: var(--shadow-card);
+}
+
+.card-front-icon {
+  font-size: clamp(24px, 6vw, 40px);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: bold;
+  user-select: none;
+}
+
+.card-back {
+  background: var(--color-white);
+  transform: rotateY(180deg);
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--color-primary-light);
+}
+
+.card--matched .card-back {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 16px rgba(233, 30, 99, 0.3), 0 0 0 2px var(--color-primary-light);
+}
+
+.card-emoji {
+  font-size: clamp(28px, 7vw, 48px);
+  user-select: none;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

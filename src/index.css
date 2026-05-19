@@ -1,0 +1,109 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-primary: #e91e63;
+  --color-primary-light: #f8bbd0;
+  --color-primary-dark: #c2185b;
+  --color-accent: #ff4081;
+  --color-bg: #fff5f7;
+  --color-bg-dark: #fce4ec;
+  --color-text: #4a2040;
+  --color-text-light: #8b6b7d;
+  --color-white: #ffffff;
+  --color-overlay: rgba(74, 32, 64, 0.9);
+
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-body: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  --nav-height: 64px;
+  --nav-height-mobile: 64px;
+
+  --shadow-card: 0 4px 16px rgba(233, 30, 99, 0.12);
+  --shadow-card-hover: 0 8px 24px rgba(233, 30, 99, 0.22);
+
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  height: 4px;
+  background: var(--color-primary-light);
+  border-radius: 2px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  margin-top: -6px;
+}
+
+.page-enter {
+  animation: pageIn 0.4s ease;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,21 @@
+.gallery-page {
+  min-height: 100dvh;
+  padding-bottom: 24px;
+}
+
+.gallery-header {
+  text-align: center;
+  padding: 28px 24px 8px;
+}
+
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.gallery-sub {
+  font-size: 14px;
+  color: var(--color-text-light);
+}
