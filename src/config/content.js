@@ -14,12 +14,12 @@ export const COUPLE_INFO = {
 // 将照片放入 public/assets/photos/ 文件夹
 // 文件名请使用英文 + 数字，如 photo-01.jpg
 export const PHOTOS = [
-  { id: '01', src: '/assets/photos/photo-01.jpg', caption: '我们的第一张合照' },
-  { id: '02', src: '/assets/photos/photo-02.jpg', caption: '那次海边旅行' },
-  { id: '03', src: '/assets/photos/photo-03.jpg', caption: '一起看电影' },
-  { id: '04', src: '/assets/photos/photo-04.jpg', caption: '你的生日' },
-  { id: '05', src: '/assets/photos/photo-05.jpg', caption: '最美的一天' },
-  { id: '06', src: '/assets/photos/photo-06.jpg', caption: '甜蜜时光' },
+  { id: '01', src: './assets/photos/photo-01.jpg', caption: '我们的第一张合照' },
+  { id: '02', src: './assets/photos/photo-02.jpg', caption: '那次海边旅行' },
+  { id: '03', src: './assets/photos/photo-03.jpg', caption: '一起看电影' },
+  { id: '04', src: './assets/photos/photo-04.jpg', caption: '你的生日' },
+  { id: '05', src: './assets/photos/photo-05.jpg', caption: '最美的一天' },
+  { id: '06', src: './assets/photos/photo-06.jpg', caption: '甜蜜时光' },
 ];
 
 // ---- 音乐播放列表 ----
@@ -28,7 +28,7 @@ export const PLAYLIST = [
   {
     title: 'Our Song',
     artist: '专属歌单',
-    src: '/assets/music/song-01.mp3',
+    src: './assets/music/song-01.mp3',
     cover: '',
   },
 ];
