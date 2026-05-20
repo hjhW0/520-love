@@ -11,7 +11,7 @@ export default function HomePage() {
     <div className="home-page">
       <FloatingHearts />
       <div className="home-content">
-        <p className="home-date">2025.05.20</p>
+        <p className="home-date">2026.05.20</p>
         <h1 className="home-title">
           Happy 520
           <br />

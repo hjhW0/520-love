@@ -7,7 +7,7 @@
 export const COUPLE_INFO = {
   partner1: '宝贝',
   partner2: '我',
-  startDate: '2024-02-14T00:00:00Z',
+  startDate: '2025-03-01T00:00:00Z',
 };
 
 // ---- 照片列表 ----
@@ -43,7 +43,7 @@ export const LOVE_LETTER = {
     '未来的路还很长，但我一点都不害怕，因为我知道，你会一直在我身边。我想和你一起看遍世间风景，一起经历人生的每一个季节。',
     '520快乐，我的宝贝。愿我们的故事，永远未完待续。',
   ],
-  signOff: '永远爱你的，\n[你的名字]',
+  signOff: '永远爱你的，\n[hjh]',
 };
 
 // ---- 记忆游戏卡片（8对 = 16张） ----
@@ -62,4 +62,4 @@ export const GAME_CARDS = [
 
 // ---- 密码保护（可选） ----
 // 留空 = 无需密码；设置字符串 = 首页需要输入密码
-export const APP_PASSWORD = '';
+export const APP_PASSWORD = '250301';
