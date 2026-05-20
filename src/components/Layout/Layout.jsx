@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { to: '/gallery', icon: FiImage, label: '照片' },
   { to: '/music', icon: FiMusic, label: '音乐' },
   { to: '/game', icon: FiPlay, label: '游戏' },
-  { to: '/letter', icon: FiMail, label: '情书' },
+  { to: '/letter', icon: FiMail, label: '情书集' },
 ];
 
 export default function Layout() {

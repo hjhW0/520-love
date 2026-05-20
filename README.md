@@ -31,7 +31,7 @@ public/assets/music/    ← 放入音乐（如 song-01.mp3）
 - `COUPLE_INFO` — 你和她的名字、在一起的第一天
 - `PHOTOS` — 照片列表（路径 + 配文）
 - `PLAYLIST` — 音乐播放列表
-- `LOVE_LETTER` — 情书内容
+- `LOVE_LETTERS` — 情书集（支持多封）
 - `GAME_CARDS` — 记忆游戏卡片（默认 emoji，可改为照片）
 - `APP_PASSWORD` — 可选密码（留空则不启用）
 
@@ -62,7 +62,7 @@ npm run build
 | 照片 | `#/gallery` | 瀑布流照片墙，点击放大查看 |
 | 音乐 | `#/music` | 音乐播放器（需先点击播放按钮） |
 | 游戏 | `#/game` | 记忆翻牌配对，记录最佳成绩 |
-| 情书 | `#/letter` | 打字机效果情书 |
+| 情书集 | `#/letter` | 情书集列表 + 打字机效果 |
 
 ---
 
