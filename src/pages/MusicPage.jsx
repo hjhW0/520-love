@@ -1,10 +1,9 @@
 import MusicPlayer from '../components/MusicPlayer/MusicPlayer';
-import { useAudio } from '../hooks/useAudio';
-import { PLAYLIST } from '../config/content';
+import { useAudioContext } from '../context/AudioContext';
 import './MusicPage.css';
 
 export default function MusicPage() {
-  const audio = useAudio(PLAYLIST);
+  const audio = useAudioContext();
 
   return (
     <div className="music-page">

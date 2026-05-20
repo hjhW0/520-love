@@ -95,9 +95,20 @@
 .music-progress {
   flex: 1;
   height: 4px;
-  background: linear-gradient(to right, var(--color-primary) var(--progress, 0%), var(--color-primary-light) var(--progress, 0%));
   border-radius: 2px;
   outline: none;
+}
+
+.music-progress::-webkit-slider-runnable-track {
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary) var(--progress, 0%), var(--color-primary-light) var(--progress, 0%));
+  border-radius: 2px;
+}
+
+.music-progress::-moz-range-track {
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary) var(--progress, 0%), var(--color-primary-light) var(--progress, 0%));
+  border-radius: 2px;
 }
 
 .music-controls {

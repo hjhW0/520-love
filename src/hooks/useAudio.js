@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 
 export function useAudio(playlist) {
   const audioRef = useRef(null);
+  const isSeekingRef = useRef(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -18,12 +19,16 @@ export function useAudio(playlist) {
 
   const currentTrack = playlist[currentIndex] || null;
 
+  // create Audio instance once (never destroyed by navigation)
   useEffect(() => {
     const audio = new Audio();
     audioRef.current = audio;
     audio.volume = volume;
 
-    const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+    const onTimeUpdate = () => {
+      if (isSeekingRef.current) return;
+      setCurrentTime(audio.currentTime);
+    };
     const onLoadedMetadata = () => setDuration(audio.duration);
     const onEnded = () => {
       setIsPlaying(false);
@@ -48,15 +53,15 @@ export function useAudio(playlist) {
       audio.removeEventListener('loadedmetadata', onLoadedMetadata);
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
-      audio.pause();
-      audio.src = '';
-      audioRef.current = null;
+      // keep audio alive across page navigation
     };
   }, []);
 
+  // load track when index changes
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio || !currentTrack) return;
+    audio.pause();
     audio.src = currentTrack.src;
     audio.load();
     setCurrentTime(0);
@@ -69,6 +74,7 @@ export function useAudio(playlist) {
     }
   }, [currentIndex]);
 
+  // sync volume
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
@@ -107,8 +113,12 @@ export function useAudio(playlist) {
   const seek = useCallback((time) => {
     const audio = audioRef.current;
     if (!audio) return;
+    isSeekingRef.current = true;
     audio.currentTime = time;
     setCurrentTime(time);
+    setTimeout(() => {
+      isSeekingRef.current = false;
+    }, 100);
   }, []);
 
   const next = useCallback(() => {
@@ -129,6 +139,7 @@ export function useAudio(playlist) {
     duration,
     volume,
     playBlocked,
+    isSeekingRef,
     setVolume,
     play,
     pause,

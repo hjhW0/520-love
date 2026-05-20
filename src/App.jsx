@@ -6,6 +6,7 @@ import GalleryPage from './pages/GalleryPage';
 import MusicPage from './pages/MusicPage';
 import GamePage from './pages/GamePage';
 import LoveLetterPage from './pages/LoveLetterPage';
+import { AudioProvider } from './context/AudioContext';
 import { APP_PASSWORD } from './config/content';
 import './App.css';
 
@@ -60,30 +61,32 @@ export default function App() {
   }
 
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route
-          index
-          element={<PageWrapper key={location.pathname}><HomePage /></PageWrapper>}
-        />
-        <Route
-          path="gallery"
-          element={<PageWrapper key={location.pathname}><GalleryPage /></PageWrapper>}
-        />
-        <Route
-          path="music"
-          element={<PageWrapper key={location.pathname}><MusicPage /></PageWrapper>}
-        />
-        <Route
-          path="game"
-          element={<PageWrapper key={location.pathname}><GamePage /></PageWrapper>}
-        />
-        <Route
-          path="letter"
-          element={<PageWrapper key={location.pathname}><LoveLetterPage /></PageWrapper>}
-        />
-      </Route>
-    </Routes>
+    <AudioProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route
+            index
+            element={<PageWrapper key={location.pathname}><HomePage /></PageWrapper>}
+          />
+          <Route
+            path="gallery"
+            element={<PageWrapper key={location.pathname}><GalleryPage /></PageWrapper>}
+          />
+          <Route
+            path="music"
+            element={<PageWrapper key={location.pathname}><MusicPage /></PageWrapper>}
+          />
+          <Route
+            path="game"
+            element={<PageWrapper key={location.pathname}><GamePage /></PageWrapper>}
+          />
+          <Route
+            path="letter"
+            element={<PageWrapper key={location.pathname}><LoveLetterPage /></PageWrapper>}
+          />
+        </Route>
+      </Routes>
+    </AudioProvider>
   );
 }
 

@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react';
 import { FiPlay, FiPause, FiSkipBack, FiSkipForward } from 'react-icons/fi';
 import './MusicPlayer.css';
 
@@ -15,12 +16,23 @@ export default function MusicPlayer({
   duration,
   volume,
   playBlocked,
+  isSeekingRef,
   toggle,
   seek,
   setVolume,
   next,
   prev,
 }) {
+  const [sliderValue, setSliderValue] = useState(0);
+  const isDragging = useRef(false);
+
+  // sync currentTime to local slider when not dragging
+  useEffect(() => {
+    if (!isDragging.current) {
+      setSliderValue(currentTime);
+    }
+  }, [currentTime]);
+
   if (!currentTrack) {
     return (
       <div className="music-player music-player--empty">
@@ -31,7 +43,18 @@ export default function MusicPlayer({
     );
   }
 
-  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const displayTime = isDragging.current ? sliderValue : currentTime;
+  const progressPercent = duration > 0 ? (displayTime / duration) * 100 : 0;
+
+  const handleSeekStart = () => {
+    isDragging.current = true;
+    isSeekingRef.current = true;
+  };
+
+  const handleSeekEnd = () => {
+    isDragging.current = false;
+    seek(sliderValue);
+  };
 
   return (
     <div className="music-player">
@@ -51,15 +74,21 @@ export default function MusicPlayer({
       </div>
 
       <div className="music-progress-bar">
-        <span className="music-time">{formatTime(currentTime)}</span>
+        <span className="music-time">{formatTime(displayTime)}</span>
         <input
           type="range"
           min="0"
           max={duration || 0}
-          value={currentTime}
-          onChange={(e) => seek(Number(e.target.value))}
+          value={displayTime}
+          onInput={(e) => {
+            setSliderValue(Number(e.target.value));
+          }}
+          onMouseDown={handleSeekStart}
+          onMouseUp={handleSeekEnd}
+          onTouchStart={handleSeekStart}
+          onTouchEnd={handleSeekEnd}
           className="music-progress"
-          style={{ '--progress': `${progress}%` }}
+          style={{ '--progress': `${progressPercent}%` }}
         />
         <span className="music-time">{formatTime(duration)}</span>
       </div>
