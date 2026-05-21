@@ -90,7 +90,7 @@ export default function MusicPlayer({
           className="music-progress"
           style={{ '--progress': `${progressPercent}%` }}
         />
-        <span className="music-time">{formatTime(duration)}</span>
+        <span className="music-time">{duration > 0 ? formatTime(duration) : '--:--'}</span>
       </div>
 
       <div className="music-controls">

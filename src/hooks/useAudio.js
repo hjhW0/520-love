@@ -28,8 +28,17 @@ export function useAudio(playlist) {
     const onTimeUpdate = () => {
       if (isSeekingRef.current) return;
       setCurrentTime(audio.currentTime);
+      setDuration((prev) => {
+        if (prev > 0) return prev;
+        if (isFinite(audio.duration) && audio.duration > 0) return audio.duration;
+        return prev;
+      });
     };
-    const onLoadedMetadata = () => setDuration(audio.duration);
+    const onDurationChange = () => {
+      if (isFinite(audio.duration) && audio.duration > 0) {
+        setDuration(audio.duration);
+      }
+    };
     const onEnded = () => {
       setIsPlaying(false);
       if (currentIndex < playlist.length - 1) {
@@ -44,13 +53,13 @@ export function useAudio(playlist) {
     };
 
     audio.addEventListener('timeupdate', onTimeUpdate);
-    audio.addEventListener('loadedmetadata', onLoadedMetadata);
+    audio.addEventListener('durationchange', onDurationChange);
     audio.addEventListener('ended', onEnded);
     audio.addEventListener('error', onError);
 
     return () => {
       audio.removeEventListener('timeupdate', onTimeUpdate);
-      audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+      audio.removeEventListener('durationchange', onDurationChange);
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
       // keep audio alive across page navigation
